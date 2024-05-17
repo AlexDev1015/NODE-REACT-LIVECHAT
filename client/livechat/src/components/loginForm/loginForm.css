@@ -1,0 +1,15 @@
+.logForm{justify-content: center; justify-items: center; display: grid; gap: 30px; }
+.logForm input,.logForm button {border: solid 1px white; background: transparent; border-radius:30px; width: 400px; height: 50px; color: white; font-size: 20PX; }
+.logForm button{ width: 200px; background: var(--first-color);}
+.logForm input{padding: 0 30PX;}
+
+
+@media(min-width:1080px){
+    .logForm input{}
+
+
+}
+
+@media(max-width:1080px){
+
+}

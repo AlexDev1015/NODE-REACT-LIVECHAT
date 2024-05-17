@@ -1,0 +1,17 @@
+:root {
+    
+    --main-color: #c501e2;;
+    --first-color: #1fd1bc;
+    --second-color:#00ff91;
+    --third-color :#22ee29;
+    --fourth-color : #deff08;
+    --fifth-color : #ffd900;
+    
+
+  }
+  
+*{margin:0; padding:0;}
+body{background-color:var(--main-color)}
+.container{width: 100%; position: absolute; bottom: 0;}
+.wrapper{max-width: 600px; width: 100%; margin: 0 auto;}
+
