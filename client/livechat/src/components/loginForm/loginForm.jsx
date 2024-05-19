@@ -25,7 +25,6 @@ export const LoginForm =() => {
                 <input onChange={getUserInput} value={userInput} /> 
                 <input onChange={getUserPassWord} type="password" value={userPassword} />
                 <button type="submit">lOG</button>
-
             </form>
         </>
     )
