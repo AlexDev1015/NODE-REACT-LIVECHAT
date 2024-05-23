@@ -6,11 +6,20 @@ export const logPetition = async(user,password) =>{
     try{
         const petition = await fetch('http://localhost:3000/login', {
             method:'POST',
+            headers: { 'content-type': 'application/json' },
             body: JSON.stringify(credentials)
+            
+            
 
         })
+        const result = await petition.json();
 
-        return petition;
+        console.log(`requesteed -> ${JSON.stringify(result)}`)
+        
+        return result;
+
+
+
 
     }
     catch(e){console.log(e)}

@@ -1,23 +1,25 @@
 import express from 'express'
+import cors from 'cors'
 import { logRequest } from './partials/logrequest.js'
 import { dbConnection } from './partials/dbconnection.js'
 
+let connection;
+
 
 const app = express()
+app.use(cors());
+app.use(express.json());
 
-let connection;
 
 
 app.get('/',(req,res)=>{
 
 })
 
-app.post('/login',(req,res)=>{
-
-    const request = logRequest(connection,req.body.credentials)
-    console.log(`request -> ${req.body.credentials}`)
-    res(request)
-
+app.post('/login',async(req,res)=>{
+    const request = await logRequest(connection,req.body)
+    console.log(`request -> ${JSON.stringify(request)}`)
+    res.json(request)
 
 })
 

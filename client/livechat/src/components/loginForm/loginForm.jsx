@@ -1,11 +1,15 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 
 
 import './loginForm.css'
 import { logPetition } from "../../partials/index.js"
+import { HomeMessage } from "./home_message/homeMesage.jsx"
+import { UserParams } from "../mainContainer/mainContent.jsx"
 
 
 export const LoginForm =() => {
+
+    let[user,setUser] = useContext(UserParams)
 
     let [userName, setUserName] = useState('')
     let [userPassword,setUserPassword] = useState('')
@@ -19,9 +23,10 @@ export const LoginForm =() => {
     }
 
 
-    const logIn = async() => {
+    const logIn = async(event) => {
+        event.preventDefault();
         const log = await logPetition(userName,userPassword)
-        console.log(`log -> ${log}`)
+        setUser(log)
 
     }
     
@@ -29,11 +34,14 @@ export const LoginForm =() => {
 
     return(
         <>
-            <form onSubmit={()=>logIn} className="logForm">
+        <div className="loginContainer">
+            <HomeMessage />
+            <form onSubmit={logIn} className="logForm">
                 <input onChange={getUserName} value={userName} /> 
                 <input onChange={getUserPassWord} type="password" value={userPassword} />
                 <button type="submit">lOG</button>
             </form>
+        </div>
         </>
     )
 

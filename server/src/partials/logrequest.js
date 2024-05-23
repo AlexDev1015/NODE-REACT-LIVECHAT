@@ -1,9 +1,12 @@
 export const logRequest =async(connection,credentials ) =>{
+
     try{
         const query = 'SELECT `ID` FROM `users` WHERE `usr` = ? AND `pswd` = ?';
-        const response = connection.query(query)
+        const  [results, fields] = await connection.query(query,[credentials.user,credentials.password])
 
-    }catch(e){}
+        return results
+
+    }catch(e){console.log('server error / dbsearch failed ')}
 
 
 }
