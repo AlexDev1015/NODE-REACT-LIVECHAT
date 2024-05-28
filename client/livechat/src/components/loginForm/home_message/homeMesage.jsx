@@ -10,6 +10,16 @@ export const HomeMessage = () => {
     let [counter, setCounter] = useState(0)
 
 
+    const putMessage = () => {
+
+        if (counter < defaultMessage.length) {
+            setMessage(message => message + defaultMessage[counter])
+            setCounter(prev => prev + 1)
+
+        }
+     
+    }
+
     useEffect(()=>{
         if(Array.isArray(user)){
             setCounter(0)
@@ -21,21 +31,10 @@ export const HomeMessage = () => {
         }
     
     },[user])
-
-
-    const putMessage = () => {
-    
-        if (counter < defaultMessage.length) {
-            setMessage(message => message + defaultMessage[counter])
-            setCounter(prev => prev + 1)
-
-        }
-     
-    }
  
 
     useEffect(() => {
-        setTimeout(putMessage, 80)
+        setTimeout(putMessage, 50)
     }, [message,defaultMessage])
 
 

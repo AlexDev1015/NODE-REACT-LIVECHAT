@@ -1,0 +1,17 @@
+ul{text-decoration: none; list-style: none;}
+.userContacsContainer ul td{text-align: center; display: flex; justify-content: center; padding: 10px 20px;}
+
+.userContacsContainer{border: solid 1px white; border-radius: 4px; color:white; background-color: black ; margin-top: 10px;}
+
+.userContacsContainer ul li{ 
+    border: solid 1px white;
+    padding: 10px 20px;
+    background: black;
+    transition: background ease-in 0.5s,color 1s;
+}
+
+.userContacsContainer ul li:hover{
+    background-color: var(--fifth-color);
+    color:black;
+    font-weight: bold;
+ }

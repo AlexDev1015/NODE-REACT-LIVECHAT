@@ -4,7 +4,7 @@ export const logPetition = async(user,password) =>{
 
     const credentials = {user:user,password:password}
     try{
-        const petition = await fetch('http://localhost:3000/login', {
+        const petition = await fetch('http://localhost:1222/login', {
             method:'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(credentials)
