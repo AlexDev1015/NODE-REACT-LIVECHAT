@@ -9,24 +9,22 @@ import { UserParams } from "../mainContainer/mainContent.jsx"
 
 export const LoginForm =() => {
 
-    let[user,setUser] = useContext(UserParams)
+    const {user,setUser} = useContext(UserParams)
 
     let [userName, setUserName] = useState('')
     let [userPassword,setUserPassword] = useState('')
 
-    const getUserName = (event) =>{
-        setUserName(event.target.value)
-    }
+     
 
-    const getUserPassWord =(event) =>{
-        setUserPassword(event.target.value)
-    }
+    const getUserName = (event) =>{ setUserName(event.target.value)}
+    const getUserPassWord =(event) =>{setUserPassword(event.target.value)}
 
 
     const logIn = async(event) => {
         event.preventDefault();
-        const log = await logPetition(userName,userPassword)
-        setUser(log)
+        const response =  await logPetition(userName,userPassword)
+        console.log(`${JSON.stringify(response)}`)
+        setUser(response)
 
     }
     

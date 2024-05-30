@@ -1,21 +1,35 @@
-import { useState } from "react"
-
+import { useState,useContext,useEffect } from "react"
 import '../newConversation/newConversation.css'
+
+
+
+import { contactCreation } from "../../../../partials"
+import {UserParams} from "../../../mainContainer/mainContent"
+
+
 
 export const NewConversation = () => {
 
+    let[contactID, setContactID] = useState('')
+    
+    const {user,contacs,setContacts} = useContext(UserParams)
 
-    let[newConversation, setNewConversation] = useState(null)
 
-    let getNewConversationInput = (e) =>{
-        setNewConversation(e.target.value);
+
+    let handleSubmit = async(event)=>{
+        console.log(`valor de contact: ${typeof(contacs)}`)
+        event.preventDefault();
+        const response = await contactCreation(user,contactID)
+        console.log(`user search response ->${response}`)
 
     }
 
+    let getContactID = (e) =>{setContactID(e.target.value);}
+
     return(
     <>
-        <form className="createNewConversation"> 
-            <input onChange={getNewConversationInput} value={newConversation} />
+        <form onSubmit={handleSubmit} className="createNewConversation"> 
+            <input required onChange={getContactID} value={contactID} />
             <button type="submit">SEARCH</button>
 
           

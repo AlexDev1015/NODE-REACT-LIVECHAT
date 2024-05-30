@@ -3,7 +3,7 @@ import { UserParams } from "../../mainContainer/mainContent"
 
 export const HomeMessage = () => {
 
-    let [user, setUser] = useContext(UserParams);
+    const {user,setUser,contacts,set} = useContext(UserParams);
     let[defaultMessage, setDefaultMessage] = useState('')
     let[message, setMessage] = useState('')
 

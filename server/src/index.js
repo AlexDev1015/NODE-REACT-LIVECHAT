@@ -9,6 +9,7 @@ import {Server} from 'socket.io'
 import { logRequest } from './partials/logrequest.js'
 import { dbConnection } from './partials/dbconnection.js'
 import { setSocketId } from './partials/dbSearch.js'
+import { contactRequest } from './partials/contactRequest.js'
 
 
 dotenv.config();
@@ -45,6 +46,13 @@ app.post('/login',async(req,res)=>{
     const request = await logRequest(connection,req.body)
     setSocketId(connection,userSocketId,JSON.stringify(request))
     res.json(request)
+
+})
+
+app.post('/contacs',async(req,res)=>{
+    
+    console.log(`###################### index.js > body: ${JSON.stringify(req.body)}`)
+    const request = await contactRequest(connection,req.body);
 
 })
 

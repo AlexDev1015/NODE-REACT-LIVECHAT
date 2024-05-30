@@ -9,7 +9,7 @@ import '../chatContainer/chatContainer.css'
 
 export const ChatContainer = () => {
 
-    let [user, setUser] = useContext(UserParams)
+    let {user,setUser} = useContext(UserParams)
 
 
 
