@@ -3,7 +3,7 @@ import '../newConversation/newConversation.css'
 
 
 
-import { contactCreation } from "../../../../partials"
+import { contactSearch } from "../../../../partials"
 import {UserParams} from "../../../mainContainer/mainContent"
 
 
@@ -19,7 +19,7 @@ export const NewConversation = () => {
     let handleSubmit = async(event)=>{
         console.log(`valor de contact: ${typeof(contacs)}`)
         event.preventDefault();
-        const response = await contactCreation(user,contactID)
+        const response = await contactSearch(user,contactID)
         console.log(`user search response ->${response}`)
 
     }

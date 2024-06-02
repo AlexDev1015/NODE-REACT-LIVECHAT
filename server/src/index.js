@@ -51,8 +51,9 @@ app.post('/login',async(req,res)=>{
 
 app.post('/contacs',async(req,res)=>{
     
-    console.log(`###################### index.js > body: ${JSON.stringify(req.body)}`)
     const request = await contactRequest(connection,req.body);
+
+    //console.log(`###################### index.js > request: ${request}`)
 
 })
 

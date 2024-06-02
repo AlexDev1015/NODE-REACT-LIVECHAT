@@ -24,7 +24,7 @@ export const logPetition = async(user,password) =>{
 
 }
 
-export const contactCreation = async(user,contactID) =>{
+export const contactSearch = async(user,contactID) =>{
 
         const objects = {user:user,contactID:contactID}
     try{
