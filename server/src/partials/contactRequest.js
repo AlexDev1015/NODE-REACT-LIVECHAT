@@ -15,28 +15,34 @@ export const contactRequest = async(connection,requestParams) =>{
         console.log("existe")
         const verificationQuery = 'SELECT `contacts` FROM `users` WHERE `ID` = ?'
         const [results] = await connection.query(verificationQuery,[UserID]);
-        contactsList = results[0].contacts
-        console.log(`###################### contactRequest.js > result: ${JSON.stringify(results)}`)
+        contactsList = JSON.parse(results[0].contacts);
+        console.log(`###################### contactRequest.js > resulXt: ${JSON.stringify(contactsList)}`)
         
         if(contactsList == null){ // verify userContactsList
             console.log("no tiene contactos")
             const setContactList = [{contactID:contactID}]
             const createContactQuery = 'UPDATE users SET contacts = ? WHERE ID = ?';
             const [result] = await connection.query(createContactQuery,[JSON.stringify(setContactList),UserID])
+            console.log(`${JSON.stringify(result)}`)
+            return setContactList
+            
         }
 
         else{ //Verify each contact 
-            JSON.parse(contactsList).map(async(contact)=>{
+            contactsList.map(async(contact)=>{
                 if(contact.contactID == contactID){
-                    console.log('ya es su contacto')
+                    console.log(`ya es su contactoS ${contactsList}`)
+                    return contactsList;
                 }
                 else{ //create newContactilist
-                   let newContactList = JSON.parse(contactsList);
+                    let newContactList = contactsList;
                     let newContact = {contactID:contactID}
                     newContactList.push(newContact) 
                     const newContactListQuery = 'UPDATE users SET contacts = ? WHERE ID = ?'
                     const [result] = await connection.query(newContactListQuery,[JSON.stringify(newContactList),UserID])
                     console.log(`nueva lista AGREGADA ${JSON.stringify(newContactList)}`)
+                    console.log(`${JSON.stringify(result)}`)
+                    return newContactList;
 
 
                 }
@@ -44,18 +50,10 @@ export const contactRequest = async(connection,requestParams) =>{
         }
     }
 
-    else
+    else{
         console.log("no existe"); // dont exist
 
-    
-
-
-
-
-
-   // const query = 'SELECT `ID`, `usr` FROM `users` WHERE  '
-
-
+    }
 }
 
 

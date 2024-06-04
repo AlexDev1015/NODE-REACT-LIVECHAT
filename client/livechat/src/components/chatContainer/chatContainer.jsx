@@ -19,8 +19,6 @@ export const ChatContainer = () => {
                 <div className="userPanel">
                     <NewConversation/>
                     <Contacts/>
-                    
-
                 </div>
                 
 

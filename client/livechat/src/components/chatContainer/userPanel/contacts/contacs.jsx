@@ -1,10 +1,14 @@
-
+import { useContext } from 'react'
+import { UserParams } from '../../../mainContainer/mainContent'
 
 import '../contacts/contacs.css'
 
 
 
+
 export const Contacts = () =>{
+
+    const {contacs,setContacs} = useContext(UserParams)
 
 
     return(

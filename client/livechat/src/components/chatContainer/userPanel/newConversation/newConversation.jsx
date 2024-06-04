@@ -31,8 +31,6 @@ export const NewConversation = () => {
         <form onSubmit={handleSubmit} className="createNewConversation"> 
             <input required onChange={getContactID} value={contactID} />
             <button type="submit">SEARCH</button>
-
-          
         </form>
         
     </>)

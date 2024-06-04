@@ -53,7 +53,8 @@ app.post('/contacs',async(req,res)=>{
     
     const request = await contactRequest(connection,req.body);
 
-    //console.log(`###################### index.js > request: ${request}`)
+    console.log(`###################### index.js > request index: ${request}`)
+    res.json(request)
 
 })
 

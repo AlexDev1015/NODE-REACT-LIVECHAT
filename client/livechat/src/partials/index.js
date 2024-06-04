@@ -26,7 +26,7 @@ export const logPetition = async(user,password) =>{
 
 export const contactSearch = async(user,contactID) =>{
 
-        const objects = {user:user,contactID:contactID}
+    const objects = {user:user,contactID:contactID}
     try{
         const petition  = await fetch("http://localhost:1222/contacs",{
             method:'POST',
@@ -35,7 +35,8 @@ export const contactSearch = async(user,contactID) =>{
 
         })
         const result = await petition.json();
-        return result
+        console.log(`dddd${result}`)
+        //return result
 
     }catch(e){}
 
