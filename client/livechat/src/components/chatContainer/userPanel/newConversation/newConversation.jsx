@@ -20,8 +20,7 @@ export const NewConversation = () => {
         console.log(`valor de contact: ${typeof(contacs)}`)
         event.preventDefault();
         const response = await contactSearch(user,contactID)
-        console.log(`user search response ->${response}`)
-
+        setContacts(response)
     }
 
     let getContactID = (e) =>{setContactID(e.target.value);}

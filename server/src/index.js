@@ -1,4 +1,4 @@
-import express, { json } from 'express'
+import express, {json, request} from 'express'
 import cors from 'cors'
 import http from "http"
 import dotenv from  "dotenv"
@@ -10,7 +10,7 @@ import { logRequest } from './partials/logrequest.js'
 import { dbConnection } from './partials/dbconnection.js'
 import { setSocketId } from './partials/dbSearch.js'
 import { contactRequest } from './partials/contactRequest.js'
-
+import  {getMessages} from "./partials/getMessages.js";
 
 dotenv.config();
 
@@ -52,12 +52,15 @@ app.post('/login',async(req,res)=>{
 app.post('/contacs',async(req,res)=>{
     
     const request = await contactRequest(connection,req.body);
-
-    console.log(`###################### index.js > request index: ${request}`)
+   // console.log(`###################### index.js > request index: ${JSON.stringify(request)}`)
     res.json(request)
 
 })
 
+app.post('/messages',async (req,res)=>{
+    const request = await getMessages(connection,req.body)
+    console.log(`conversaciones ${request}`)
+    res.json(request);
 
-
+})
 

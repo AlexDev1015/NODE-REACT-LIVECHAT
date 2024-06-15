@@ -10,23 +10,18 @@ export let UserParams = createContext();
 
 export const MainContainer = () => {
 
-
-
-
     let [user, setUser] = useState(null);
-    let [contacs,setContacts] = useState('')
+    let [contacs,setContacts] = useState(null)
+    let [contact, setContact] = useState(null)
 
 
-
-
-    const globalParams = {user,setUser,contacs,setContacts}
+    const globalParams = {user,setUser,contacs,setContacts,contact,setContact}
 
 
     return (
 
         <UserParams.Provider value={globalParams}>
             {(user == null || user.length == 0) ?
-
                 <div className='container'>
                     <div className='wrapper'>
                         <div className='mainContainer'>

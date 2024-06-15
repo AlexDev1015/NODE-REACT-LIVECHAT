@@ -1,0 +1,24 @@
+.ChatPanel{background: black; display: grid;}
+.MessageWrapper input {
+    border: solid 1px white;
+    background: transparent;
+    color: white;
+    border-radius: 30px;
+    height: 40px;
+    color: white;
+    font-size: 20PX;
+    padding: 0 20px;
+}
+.MessageWrapper{
+    display: flex;
+}
+
+
+@media (min-width: 1080px){
+ .ChatPanel {
+     //width: 60%;
+     //height: 500px;
+     border-radius: 10px;
+     padding: 20px;
+ }
+}
