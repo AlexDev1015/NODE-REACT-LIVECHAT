@@ -47,13 +47,10 @@ export const getMessages = async (user, contactID) => {
 
     try{
         const objects = { user:user, contactID:contactID}
-        console.log("holax")
-
         const petition = await fetch("http://localhost:1222/messages",{
             method: 'POST',
             headers: {'content-type':'application/json'},
             body: JSON.stringify(objects)
-
         })
 
         const result = await petition.json()
@@ -76,9 +73,10 @@ export const handleMessage = async (user, contact, message) => {
     const objects = {user:user,contact:contact,message:message}
     const petition = await fetch("http://localhost:1222/messages/send",{
         method: "POST",
-        headers: {'content-type':'aplication/json'},
+        headers: {'content-type':'application/json'},
         body: JSON.stringify(objects)
     })
+    console.log(`la respuesta es ${petition}`)
 
 }
 

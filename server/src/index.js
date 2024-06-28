@@ -11,6 +11,9 @@ import { dbConnection } from './partials/dbconnection.js'
 import { setSocketId } from './partials/dbSearch.js'
 import { contactRequest } from './partials/contactRequest.js'
 import  {getMessages} from "./partials/getMessages.js";
+import {addMessage} from "./partials/addMessage.js";
+import {recivedMessage} from "./partials/recivedMessage.js";
+import {getContactSocket} from "./partials/getContactSocket.js";
 
 dotenv.config();
 
@@ -38,7 +41,23 @@ http_server.listen(process.env.SERVER_PORT, async()=>{ // on top bc here  is def
 
 ioSocket.on('connection',(socket)=>{ 
     userSocketId=socket.id;
-    console.log(`socket: ${userSocketId}`)
+    //console.log(`socket: ${userSocketId}`)
+
+    socket.on("send message", async(data,callback)=>{
+       console.log(`la data es: ${JSON.stringify(data)}`)
+       if (data.message){
+           const conversationID = await recivedMessage(connection, data)
+          const conversationMessages =await addMessage(connection, data, conversationID)
+
+           const ContactSocket =   await getContactSocket(connection,data)
+           console.log(`su socket es ${JSON.stringify(ContactSocket[0].socketID)}`)
+           callback(conversationMessages)
+           ioSocket.to(ContactSocket[0].socketID).emit("get messages",conversationMessages)
+
+
+       }
+
+    })
 })
 
 
@@ -58,9 +77,15 @@ app.post('/contacs',async(req,res)=>{
 })
 
 app.post('/messages',async (req,res)=>{
-    const request = await getMessages(connection,req.body)
-    console.log(`conversaciones ${request}`)
-    res.json(request);
+    const requestConversationID = await getMessages(connection,req.body)
+
+
+
+    res.json(requestConversationID);
 
 })
 
+/* app.post('/messages/send', async(req,res)=>{
+    const firstRequestMessages = await  getMessages(connection,req.body)
+    const lastRequestMessages = await  addMessage(firstRequestMessages,req.body.message)
+}) */

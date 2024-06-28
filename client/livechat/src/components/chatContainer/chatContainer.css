@@ -10,28 +10,29 @@
 
 
 .userPanel{
-    background: black; display: grid; justify-content: center;
+    background: black;justify-content: center;
 }
 
 @media(min-width:1080px){
 
     .chatContainerWrapper{
 
-        max-width: 1280px;
         width: 100%;
         margin:  auto;
     }
 
     .chatContainerWrapper{
-        margin-top: 200px;
         display: flex;
         gap: 30px;
     }
 
     .userPanel{
         width: 40%;
-        border-radius: 10px;
-        padding: 20px;
+        height: 100vh;
+        padding: 40px;
 
+    }
+    .chatPanel{
+        width: 60%;
     }
 }

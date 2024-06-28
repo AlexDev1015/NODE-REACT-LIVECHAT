@@ -1,17 +1,25 @@
-import {json} from "express";
+import {v4} from "uuid";
 
 export const getMessages = async (connection, requestParams) =>{
 
-    console.log(`asa${JSON.stringify(requestParams)}`)
-    const [result] = await connection.query("SELECT conversations FROM users where ID = ? ",[requestParams.user[0].ID]);
-    let userMessages = result[0].conversations;
-    //console.log(`mensajes:  ${userMessages}`)
-    //esta pendiente resolver según el contacto
-    if(userMessages != null){
-        return userMessages;
+    const contactID = requestParams.contactID;
+    const user = requestParams.user[0].ID;
+
+    const [conversationID] = await connection.query("SELECT conversationID FROM conversations WHERE (sendBy = ? AND sendTo = ? ) OR (sendBy = ? AND sendTo = ?)",[contactID,user,user,contactID]);
+    if(conversationID != ""){
+
+        const[conversation] = await connection.query("SELECT * FROM messages where conversationID = ?",[conversationID[0].conversationID])
+        console.log(`conversationID: ${JSON.stringify(conversation)}`)
+
+        return conversation
+        //resolver el obtener los menssajes
     }
     else{
-        return 'Say hi';
+        return "Say hi!"
+
+
     }
+
+
 
 }

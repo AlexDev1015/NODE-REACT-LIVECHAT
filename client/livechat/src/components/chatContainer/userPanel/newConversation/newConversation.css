@@ -1,1 +1,1 @@
-.createNewConversation{display: flex; gap: 20px;}
+.createNewConversation{display: flex; justify-content: space-between;}

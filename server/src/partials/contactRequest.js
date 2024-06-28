@@ -20,7 +20,7 @@ export const contactRequest = async (connection, requestParams) => {
             const verificationQuery = 'SELECT contacts FROM users WHERE ID = ?'
             const [results] = await connection.query(verificationQuery, [UserID]);
             contactsList = JSON.parse(results[0].contacts);
-            let tag = false;
+            let tag = false; // is a contact?
 
 
             if (contactsList == null) { // verify userContactsList
@@ -29,10 +29,10 @@ export const contactRequest = async (connection, requestParams) => {
                 const [userResult] = await connection.query('SELECT usr FROM users WHERE ID = ?', [contactID])
                 console.log(`$user -> ${JSON.stringify(userResult)})`)
 
-                const setContactList = [{ contactID: contactID, user: userResult[0].usr }]
+                let setContactList = [{ contactID: contactID, user: userResult[0].usr }]
                 const createContactQuery = 'UPDATE users SET contacts = ? WHERE ID = ?';
-                const [result] = await connection.query(createContactQuery, [JSON.stringify(setContactList), UserID])
-                console.log(`${JSON.stringify(result)}`)
+                await connection.query(createContactQuery, [JSON.stringify(setContactList), UserID])
+
                 return setContactList
 
             }
